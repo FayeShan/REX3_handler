@@ -1,3 +1,20 @@
+Metadata-Version: 2.4
+Name: rex3handler
+Version: 0.1.0
+Summary: Download, extract, and convert the REX3 MRIO dataset to Zarr for further processing.
+Author-email: Yanfei Shan <yanfei.shan@tum.de>
+License: MIT
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.31
+Requires-Dist: tqdm>=4.66
+Requires-Dist: numpy>=1.23
+Requires-Dist: h5py>=3.9
+Requires-Dist: xarray>=2023.0
+Requires-Dist: zarr>=2.16
+Dynamic: license-file
+
 # REX3Handler
 
 **REX3Handler** is a Python toolkit to **download, extract, and convert** the highly resolved **REX3 MRIO database** into chunked, analysis-ready **Zarr** format. It enables seamless access and integration into Python workflows — no MATLAB required.
@@ -83,24 +100,6 @@ rex3 extract
 ### Convert all extracted .mat files into chunked Zarr format (~2GB per year)
 ```bash
 rex3 convert
-```
-
-
-###  Using from Python directly
-
-If you prefer working inside Jupyter notebooks or Python scripts, you can also import the core functionality directly:
-
-```python
-from rex3handler import download_files, unzip_dir, convert_years_to_zarr
-
-# Download a single year
-download_files(mode="single", year=1999)
-
-# Extract
-unzip_dir()
-
-# Convert
-convert_years_to_zarr(years=[1999])
 ```
 
 

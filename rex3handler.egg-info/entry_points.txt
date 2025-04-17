@@ -1,0 +1,2 @@
+[console_scripts]
+rex3 = rex3handler.cli:main
