@@ -12,7 +12,7 @@
 > Published in *Nature Sustainability* — [Read the article](https://www.nature.com/articles/s41893-023-01169-6)
 
 
-### 🧬 What's inside REX3?
+### 🍀 What's inside REX3?
 
 - **189 countries**, **163 sectors**
 - **Time series from 1995 to 2022**
