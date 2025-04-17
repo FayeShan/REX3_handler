@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rex3handler"         
+version = "0.1.0"
+description = "Download, extract, and convert the REX3 MRIO dataset to Zarr for further processing."
+readme = "README.md"
+authors = [{name = "Yanfei Shan", email = "yanfei.shan@tum.de"}]
+license = {text = "MIT"}
+requires-python = ">=3.9"
+
+# runtime deps
+dependencies = [
+    "requests>=2.31",   
+    "tqdm>=4.66",      
+    "numpy>=1.23",     
+    "h5py>=3.9",       
+    "xarray>=2023.0",  
+    "zarr>=2.16"       
+]
+
+[project.scripts]
+rex3 = "rex3handler.cli:main"   
