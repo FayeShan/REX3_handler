@@ -14,7 +14,7 @@ __all__ = ["convert_years_to_zarr"]
 log = logging.getLogger(__name__)
 
 # constant dimensions
-_NR, _NS, _N_IND, _N_REG = 189, 163, 19, 189
+_NR, _NS, _N_IND, _N_REG = 189, 163, 18, 189
 
 
 def _load_mat_v73(fname: os.PathLike) -> dict:
@@ -40,13 +40,26 @@ def _load_mat_v73(fname: os.PathLike) -> dict:
 
 
 def _build_dataset(year_dir: Path) -> xr.Dataset:
+    """Build an xarray Dataset for a single year *with integer coordinates*.
+
+    Coordinates are simple 0‑based ranges so that `.sel()`/`.isel()` works and
+    they survive the round‑trip to Zarr.
+    """
     # read matrices
     T = np.transpose(_load_mat_v73(year_dir / "T_REX3.mat")["T_REX3"], (1, 0)).astype("float32")
     Y = np.transpose(_load_mat_v73(year_dir / "Y_REX3.mat")["Y_REX3"], (1, 0)).astype("float32")
     Q = np.transpose(_load_mat_v73(year_dir / "Q_REX3.mat")["Q_REX3"], (1, 0)).astype("float32")
     QY = np.transpose(_load_mat_v73(year_dir / "Q_Y_REX3.mat")["Q_Y_REX3"], (1, 0)).astype("float32")
 
-    ds = xr.Dataset()
+    coords = {
+        "output_region": np.arange(_NR),
+        "output_sector": np.arange(_NS),
+        "input_region": np.arange(_NR),
+        "input_sector": np.arange(_NS),
+        "environmental_indicator": np.arange(_N_IND),
+    }
+
+    ds = xr.Dataset(coords=coords)
     ds["T"] = xr.DataArray(
         T.reshape((_NR, _NS, _NR, _NS)),
         dims=["output_region", "output_sector", "input_region", "input_sector"],
@@ -112,4 +125,4 @@ def convert_years_to_zarr(
         ds.to_zarr(dest, mode=mode, encoding={"T": {"chunks": (47, 41, 47, 41)}}, consolidated=True)
         del ds
         gc.collect()
-        logging.info(" Saved %s", dest)
+        logging.info("✔ Saved %s", dest)
