@@ -51,14 +51,14 @@ The REX3 dataset is primarily provided in MATLAB `.mat` format, which may not be
 
 ---
 
-##  Quick‑start
+## 🎾 Quick‑start
 
 ```bash
 # Install 
 pip install rex3handler
 ```
 
-## Download options
+## 💻 Download options
 ### 1 Download the **entire archive** (all years + misc.) using 8 threads
 ```bash
 rex3 download all --workers 8
@@ -74,7 +74,7 @@ rex3 download single --year 1999 --workers 4
 rex3 download range --start 2018 --end 2023 --workers 8
 ```
 
-## Extract and convert
+## 📲 Extract and convert
 ### Unzip all downloaded archives
 ```bash
 rex3 extract
@@ -86,7 +86,7 @@ rex3 convert
 ```
 
 
-###  Using from Python directly
+### 🍏 Using from Python directly
 
 If you prefer working inside Jupyter notebooks or Python scripts, you can also import the core functionality directly:
 
@@ -104,7 +104,7 @@ convert_years_to_zarr(years=[1999])
 ```
 
 
-##  Load and explore in Python
+## ⛱️ Load and explore in Python
 
 ```python
 import xarray as xr
