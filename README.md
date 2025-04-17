@@ -59,28 +59,28 @@ pip install rex3handler
 ```
 
 ## Download options
-# 1 Download the **entire archive** (all years + misc.) using 8 threads
+### 1 Download the **entire archive** (all years + misc.) using 8 threads
 ```bash
 rex3 download all --workers 8
 ```
 
-# 2  Download a **single year** (1999) using 4 threads
+### 2  Download a **single year** (1999) using 4 threads (~4GB per year)
 ```bash
 rex3 download single --year 1999 --workers 4
 ```
 
-# 3  Download a **range of years** (e.g., 2018–2023) using 8 threads
+### 3  Download a **range of years** (e.g., 2018–2023) using 8 threads
 ```bash
 rex3 download range --start 2018 --end 2023 --workers 8
 ```
 
 ## Extract and convert
-# Unzip all downloaded archives
+### Unzip all downloaded archives
 ```bash
 rex3 extract
 ```
 
-# Convert all extracted .mat files into chunked Zarr format (≈ 12 GB total)
+### Convert all extracted .mat files into chunked Zarr format (~2GB per year)
 ```bash
 rex3 convert
 ```
